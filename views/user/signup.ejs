@@ -1,0 +1,29 @@
+<%- include('../products/partials/header') %> <%- include('../products/partials/navbar') %>
+<%-include('../products/partials/flash')%>
+<div class="m-5 p-5 d-flex flex-column ">
+  <h1 class="m-auto text-decoration-underline">Sign up</h1>
+  <form action="/signup" method="post" class="m-auto">
+    <div class="d-flex flex-wrap m-4">
+      <label for="username">UserName : </label>
+      <input class="mx-4" type="text" id="username" name="username" />
+    </div>
+    <div class="d-flex flex-wrap m-4">
+      <label for="email">Email : </label>
+      <input class="mx-5" type="email" id="email" name="email" placeholder="abc@gmail.com" />
+    </div>
+    <div class="d-flex flex-wrap m-4">
+      <label for="password">Password : </label>
+      <input class="mx-4" type="password" id="password" name="password" placeholder="type strong password" />
+    </div>
+    <div class="mx-4">
+      <input type="radio" id="seller" name="role" value="seller" />
+      <label for="seller">Seller</label><br />
+      <input type="radio" id="buyer" name="role" value="buyer" />
+      <label for="buyer">Buyer</label><br />
+    </div>
+    <button class="btn btn-success m-4">Submit</button>
+  </form>
+  <a href="login" class="btn btn-primary m-auto">Login here</a>
+</div>
+
+<%- include('../products/partials/footer') %>

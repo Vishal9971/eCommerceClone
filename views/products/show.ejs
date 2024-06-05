@@ -1,0 +1,80 @@
+<%- include('./partials/header') %> <%- include('./partials/navbar') %>
+<%-include('./partials/flash')%>
+
+<div class="conatainer d-flex flex-wrap justify-content-evenly">
+  <div class="card m-5" style="width: 18rem">
+    <img src="/uploads/<%= foundProduct.img %>" class="card-img-top card-img" alt="..." />
+    <div class="card-body text-center">
+      <h3 class="card-title"><%= foundProduct.name %></h3>
+      <h5 class="card-title"><%= foundProduct.price %></h5>
+      <p class="card-text"><%= foundProduct.des %></p>
+
+      <% if(currentUser && currentUser.role === 'seller'){ %>
+      <div class="container d-flex flex-wrap">
+        <a href="/products" class="btn bg-primary m-2">Back</a>
+        <a href="/products/<%= foundProduct._id %>/edit" class="btn bg-success m-2">Edit</a>
+        <form action="/products/<%= foundProduct._id %>?_method=DELETE" method="POST">
+          <button class="btn bg-danger m-2">Delete</button>
+        </form>
+      </div><% }else if(currentUser && currentUser.role === 'buyer'){ %>
+        <form action="/cart/<%= foundProduct._id %>" method="POST">
+          <button type="submit" class="btn btn-secondary">Add to cart</button>
+        </form>
+        <form action="/cart/<%=foundProduct._id%>" method="POST">
+          <button class="btn btn-success">Buy Now</button>
+        </form>
+      <% }else{ %>
+      <a href="/products" class="btn bg-primary my-2">Back</a>
+      <a href="/login" class="btn btn-success">Buy Now</a>
+      <% } %>
+    </div>
+  </div>
+  <div class="Review">
+    <form class="form m-5" action="/products/<%= foundProduct._id %>/review" method="POST">
+      <h2>Leave Your Review</h2>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Rating : </label>
+        <!-- <input type="range" min="1" max="5" /> -->
+        <fieldset class="starability-basic">
+          <input
+            type="radio"
+            id="no-rate"
+            class="input-no-rate"
+            name="rating"
+            value="0"
+            checked
+            aria-label="No rating." />
+          <input type="radio" id="first-rate1" name="rating" value="1" />
+          <label for="first-rate1" title="Terrible">1 star</label>
+          <input type="radio" id="first-rate2" name="rating" value="2" />
+          <label for="first-rate2" title="Not good">2 stars</label>
+          <input type="radio" id="first-rate3" name="rating" value="3" />
+          <label for="first-rate3" title="Average">3 stars</label>
+          <input type="radio" id="first-rate4" name="rating" value="4" />
+          <label for="first-rate4" title="Very good">4 stars</label>
+          <input type="radio" id="first-rate5" name="rating" value="5" />
+          <label for="first-rate5" title="Amazing">5 stars</label>
+        </fieldset>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Comment : </label>
+        <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <button class="btn btn-success">Submit</button>
+    </form>
+    <div class="container m-5">
+      <h4>Reviews !!!</h4>
+      <%for(let item of foundProduct.reviews){%>
+      <p>
+        <span>Rated :</span>
+        <span class="starability-result" data-rating="<%= item.rating %>"></span>
+      </p>
+      <p>
+        <span>Comment : </span>
+        <span><%= item.comment %></span>
+      </p>
+      <%}%>
+    </div>
+  </div>
+</div>
+<%- include('./partials/footer') %>

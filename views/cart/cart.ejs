@@ -1,0 +1,35 @@
+<%- include('../products/partials/header') %> <%- include('../products/partials/navbar') %>
+<h1 class="text-center">Cart Page</h1>
+<div class="conatiner d-flex align-item-center">
+  <div class="m-auto">
+    <% for(let item of user.cart){ %>
+    <div class="d-flex flex-wrap align-items-center m-4 flex-col ">
+      <div class="m-1">
+        <img class="imgCart" src="/uploads/<%= item.img %>" alt="" />
+      </div>
+      <div class="mx-5 d-flex flex-wrap">
+        <h6><%= item.name %> ===> RS.</h6>
+        <h6 class="itemPrice"><%= item.price %></h6>
+      </div>
+    </div>
+    <% } %>
+  </div>
+  <div class="m-auto">
+    <h4 class="mx-5">Total Bill</h4>
+    <div class="">
+      <% let total=0; %>
+      <% for(let item of user.cart){ %>
+      <div class="d-flex flex-wrap justify-content-between">
+        <h6><%= item.name %></h6>
+        <h6>RS. <%= item.price %></h6>
+        <p class="d-none"><%=total+=item.price%></p>
+      </div>
+      <% } %>
+      <div class="d-flex flex-wrap justify-content-between">
+        <h6>Total Bill =</h6>
+        <h6>RS. <%=total  %></h6>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../products/partials/footer') %>

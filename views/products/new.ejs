@@ -1,0 +1,29 @@
+<%- include('./partials/header') %> <%- include('./partials/navbar') %>
+<%-include('./partials/flash')%>
+
+<form action="/products" method="post" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Name : </label>
+    <input type="text" name="name" class="form-control" id="exampleFormControlInput1" />
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Image URL : </label>
+    <input type="file" name="productImg" id="exampleFormControlTextarea1" class="form-control"/>
+    <!-- <textarea name="img" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> -->
+  </div>
+  <!-- <div>
+    <label for="" class="form-label">Product Image: </label>
+      <input type="file" name="productImg" />
+  </div> -->
+  <div class="mb-3">
+    <label for="paisa" class="form-label">Price : </label>
+    <input type="text" name="price" class="form-control" id="paisa" />
+  </div>
+  <div class="mb-3">
+    <label for="desc" class="form-label">Description : </label>
+    <input type="text" name="des" class="form-control" id="desc" />
+  </div>
+  <button>Submit</button>
+</form>
+
+<%- include('./partials/footer') %>

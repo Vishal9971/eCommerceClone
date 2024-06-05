@@ -1,0 +1,17 @@
+<%- include('./partials/header') %> <%- include('./partials/navbar') %>
+<%- include('./partials/flash') %>
+
+<div class="container d-flex flex-wrap justify-content-around my-5 text-center">
+  <% for(let item of allProducts){ %>
+  <div class="card">
+    <h1><%= item.name %></h1>
+    <img src="./uploads/<%= item.img %>" class="card-img" alt="" />
+    <h3><%= item.price %></h3>
+    <h5><%= item.des %></h5>
+    <a class="btn bg-primary" href="/products/<%= item._id %>/show" >View Product</a>
+  </div>
+
+  <% } %>
+</div>
+
+<%- include('./partials/footer') %>

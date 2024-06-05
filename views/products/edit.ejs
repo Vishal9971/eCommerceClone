@@ -1,0 +1,33 @@
+<%- include('./partials/header') %> <%- include('./partials/navbar') %>
+<%-include('./partials/flash')%>
+
+<form action="/products/<%= foundProduct._id %>/edit?_method=PATCH" method="POST">
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Name : </label>
+    <input
+      type="text"
+      name="name"
+      class="form-control"
+      id="exampleFormControlInput1"
+      value="<%= foundProduct.name %>" />
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Image URL : </label>
+    <input type="file" name="productImg" id="exampleFormControlTextarea1" class="form-control" value="./uploads/<%= foundProduct.img %>"/>
+
+    <!-- <textarea name="img" class="form-control" id="exampleFormControlTextarea1" rows="3">
+</textarea
+    > -->
+  </div>
+  <div class="mb-3">
+    <label for="paisa" class="form-label">Price : </label>
+    <input type="text" name="price" class="form-control" id="paisa" value="<%= foundProduct.price %>" />
+  </div>
+  <div class="mb-3">
+    <label for="desc" class="form-label">Description : </label>
+    <input type="text" name="des" class="form-control" id="desc" value="<%= foundProduct.des %>" />
+  </div>
+  <button>Submit</button>
+</form>
+
+<%- include('./partials/footer') %>
