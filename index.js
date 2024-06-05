@@ -19,7 +19,7 @@ const Product = require('./models/Product');
 mongoose.set('strictQuery', true); //version 7 ki vajah se
 mongoose
   .connect(
-    'mongodb+srv://ecommerce:ecommerce@ecommerce.zezwymf.mongodb.net/?retryWrites=true&w=majority&appName=ecommerce'
+    'mongodb+srv://sharmavis77:WcjwHXOYX1y3trwK@ecom.4hgzr3d.mongodb.net/?retryWrites=true&w=majority&appName=ecom'
   )
   .then(() => {
     console.log('DB Connected');
