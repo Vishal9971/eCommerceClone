@@ -9,7 +9,7 @@ const LocalStrategy = require('passport-local');
 const session = require('express-session');
 const flash = require('connect-flash');
 const User = require('./models/User');
-const dbURL = process.env.dbURL ||'mongodb+srv://sharmavis77:BcwJ0pgGcnj7rnSW@ecom.z8cbd5x.mongodb.net/?retryWrites=true&w=majority&appName=ecom';
+const dbURL = process.env.dbURL ||'mongodb+srv://sharmavis77:w3pgR6l53cjRdfpH@cluster0.v48qojk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 const configSession = {
   secret: 'keyboard cat',
