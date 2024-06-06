@@ -9,18 +9,23 @@ const LocalStrategy = require('passport-local');
 const session = require('express-session');
 const flash = require('connect-flash');
 const User = require('./models/User');
+const dbURL = process.env.dbURL ||'mongodb+srv://sharmavis77:BcwJ0pgGcnj7rnSW@ecom.z8cbd5x.mongodb.net/?retryWrites=true&w=majority&appName=ecom';
 
+const configSession = {
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  // cookie: { secure: true },
+  cookie: { httpOnly: true },
+};
 const productRoutes = require('./routes/productRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const authRoutes = require('./routes/authRoutes');
 const cartRoutes = require('./routes/cartRoutes');
-const Product = require('./models/Product');
 
-mongoose.set('strictQuery', true); //version 7 ki vajah se
+// mongoose.set('strictQuery', true); //version 7 ki vajah se
 mongoose
-  .connect(
-    'mongodb+srv://sharmavis77:WcjwHXOYX1y3trwK@ecom.4hgzr3d.mongodb.net/?retryWrites=true&w=majority&appName=ecom'
-  )
+  .connect(dbURL)
   .then(() => {
     console.log('DB Connected');
   })
@@ -28,13 +33,6 @@ mongoose
     console.log('error hai bhai', e);
   });
 
-let configSession = {
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  // cookie: { secure: true },
-  cookie: { httpOnly: true },
-};
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -54,7 +52,6 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-app.use(seedDB);
 app.use((req, res, next) => {
   // console.log(req.user);
   res.locals.currentUser = req.user;
